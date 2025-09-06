@@ -1,5 +1,86 @@
 \section{Shell}
 
-
 \begin{frame}[fragile]{Introduction to shell}
+	\begin{itemize}
+		\item A shell is a command-line interpreter that provides a user interface for accessing an operating system's services.
+		\item It allows users to execute commands, manage files, and run programs through text-based inputs.
+		\item Think of it as a direct communication channel between you and your computer's operating system.
+	\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Types of shells}
+	\begin{itemize}
+		\item \textbf{PowerShell (Windows)}: A task automation and configuration management framework from Microsoft.
+		\item \textbf{Bash (Linux/Mac)}: The Bourne Again Shell, the default shell on most Linux distributions and older macOS versions.
+		\item \textbf{Zsh (Mac/Linux)}: An extended version of Bash with additional features like better auto-completion and theme support.
+	\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Why zsh?}
+	\begin{itemize}
+		\item Enhanced auto-completion for commands, file paths, and options
+		\item Better customization options with themes and plugins
+		\item Improved file globbing and array handling
+		\item Spelling correction and approximate completion
+		\item Built-in support for Git and other version control systems
+		\item macOS has made zsh the default shell since Catalina (10.15)
+	\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Basic bash commands}
+	\begin{itemize}
+		\item \textbf{pwd}: Print working directory - shows your current location in the file system
+		\item \textbf{ls}: List directory contents (files and folders)
+		\item \textbf{cd}: Change directory - navigate between folders
+		\item \textbf{mkdir}: Create a new directory
+		\item \textbf{touch}: Create an empty file or update file timestamps
+		\item \textbf{cp}: Copy files or directories
+		\item \textbf{mv}: Move or rename files or directories
+		\item \textbf{rm}: Remove files or directories
+		\item \textbf{cat}: Display file contents
+		\item \textbf{echo}: Print text or variables to the terminal
+	\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{File organization in Linux}
+	\begin{itemize}
+		\item \textbf{/}: Root directory - the base of the entire file system
+		\item \textbf{/home}: User home directories (your personal files)
+		\item \textbf{/etc}: System configuration files
+		\item \textbf{/usr}: User programs and support files
+		\item \textbf{/var}: Variable data like logs, databases, websites
+		\item \textbf{/tmp}: Temporary files
+		\item \textbf{/bin}: Essential command binaries
+		\item \textbf{/lib}: Essential shared libraries and kernel modules
+		\item \textbf{/dev}: Device files
+		\item \textbf{/proc}: Process information and system information
+	\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Practical examples}
+	\begin{minted}{bash}
+# Navigate to your home directory
+cd ~
+
+# List files in long format
+ls -l
+
+# Create a new directory
+mkdir my_project
+
+# Navigate into the directory
+cd my_project
+
+# Create a new file
+touch README.md
+
+# Copy a file
+cp README.md README_copy.md
+
+# Move/Rename a file
+mv README_copy.md README_backup.md
+
+# Remove a file
+rm README_backup.md
+	\end{minted}
 \end{frame}
