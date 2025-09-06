@@ -1,10 +1,128 @@
 \section{Package Manager}
 
 \begin{frame}[fragile]{Introduction to package manager}
+	\begin{itemize}
+		\item A package manager or package management system (PMS) is a collection of software tools that automates the process of installing, upgrading, configuring, and removing computer programs for a computer in a consistent manner.
+		\item The core function of a package manager is to handle software dependencies and version conflicts to ensure that programs work correctly. It typically uses a local database to keep track of installed packages and their relationships. By working with software repositories or app stores, a package manager automates the entire software lifecycle, making it unnecessary to manually manage installations and updates.
+	\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Problem solved}
+	\begin{itemize}
+		\item \textbf{Dependency Hell}: This is a common problem where different software packages require different, and sometimes conflicting, versions of the same shared libraries. Package managers solve this by managing and allowing for the coexistence of multiple library versions.
+		\item \textbf{Manual Installation}: They eliminate the need for users to manually download, compile, and install software, which can be a complex and time-consuming process. This is particularly useful for large operating systems with hundreds or thousands of distinct packages.
+		\item \textbf{Synchronization Issues}: They ensure that the list of installed software is always consistent and up-to-date with a central database, preventing conflicts and missing prerequisites that could arise from manual interventions.
+	\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{How It Works}
+
+	A package manager operates by interacting with three key components:
+
+	\begin{itemize}
+		\item \textbf{Packages}: These are the fundamental units of a package management system. A package is a file that contains the application, its necessary files, and metadata like the name, version, and dependencies.
+		\item \textbf{Repositories}: These are centralized locations or servers where packages are stored. A package manager downloads packages from these repositories, eliminating the need for users to search for and download software from various websites.
+		\item \textbf{Local Database}: The package manager maintains a local database on the user's system. This database keeps a record of all installed packages, their versions, and their dependencies, allowing the system to efficiently track and manage software and prevent conflicts.
+	\end{itemize}
 
 \end{frame}
-	
 
-\begin{frame}[fragile]{Introduction to package manager}
 
+\begin{frame}[fragile]{Examples}
+	\begin{itemize}
+		\item Windows: winget, scoop, chocolatey
+		\item Macos: homebrew, macport
+		\item Linux: pacman, apt, dnf ...
+	\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Mirror}
+	\begin{itemize}
+		\item The mirror/source config of package defines where your package manager fetch remote packages
+		\item It can be customized to improve download speed and availability
+		\item There are many good quality source like tsinghua, ustc...
+	\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Exercise: vscode installation}
+	\begin{itemize}
+		\item Windows users: use winget to install vscode
+		\item Macos users: download homebrew and install vscode
+		\item Linux users: you should now how to do so
+	\end{itemize}
+
+	You can install vscodium if you value your privacy since it is open source and no one will steal your data and code :)
+\end{frame}
+
+\begin{frame}[fragile]{Exercise: vscode installation (Windows)}
+	\begin{enumerate}
+		\item Check \href{https://mirrors.ustc.edu.cn/help/winget-source.html}{USTC Mirror} and change your source
+		\item Proof read winget --help
+		\item Run the following command to install vscode
+	\end{enumerate}
+	\begin{minted}{bash}
+winget install --location <path-you-want-to-install> Microsoft.VisualStudioCode
+	\end{minted}
+		
+\end{frame}
+
+\begin{frame}[fragile]{Exercise: vscode installation (Macos)}
+	\begin{enumerate}
+		\item Download homebrew from \href{https://mirrors.tuna.tsinghua.edu.cn/help/homebrew/}{tsinghua mirror}
+		\item Run the following script to install homebrew
+	\end{enumerate}
+	\begin{minted}{bash}
+xcode-select --install
+export HOMEBREW_BREW_GIT_REMOTE="https://mirrors.tuna.tsinghua.edu.cn/git/homebrew/brew.git"
+export HOMEBREW_CORE_GIT_REMOTE="https://mirrors.tuna.tsinghua.edu.cn/git/homebrew/homebrew-core.git"
+export HOMEBREW_INSTALL_FROM_API=1
+export HOMEBREW_API_DOMAIN="https://mirrors.tuna.tsinghua.edu.cn/homebrew-bottles/api"
+export HOMEBREW_BOTTLE_DOMAIN="https://mirrors.tuna.tsinghua.edu.cn/homebrew-bottles"
+git clone --depth=1 https://mirrors.tuna.tsinghua.edu.cn/git/homebrew/install.git brew-install
+/bin/bash brew-install/install.sh
+rm -rf brew-install
+	\end{minted}
+\end{frame}
+
+\begin{frame}[fragile]{Exercise: vscode installation (Macos)}
+
+	For apple scilicon CPU user run following command
+
+	\begin{minted}{bash}
+test -r ~/.bash_profile && echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> ~/.bash_profile
+test -r ~/.zprofile && echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> ~/.zprofile
+	\end{minted}
+
+\end{frame}
+
+\begin{frame}[fragile]{Exercise: vscode installation (Macos)}
+
+For long term substitution of mirror, run following command, also see \href{https://mirrors.tuna.tsinghua.edu.cn/help/homebrew-bottles/}{this website}
+
+	\begin{minted}{bash}
+export HOMEBREW_CORE_GIT_REMOTE="https://mirrors.tuna.tsinghua.edu.cn/git/homebrew/homebrew-core.git"
+for tap in core cask command-not-found; do
+brew tap --custom-remote "homebrew/${tap}" "https://mirrors.tuna.tsinghua.edu.cn/git/homebrew/homebrew-${tap}.git"
+done
+brew update
+	\end{minted}
+\end{frame}
+
+\begin{frame}[fragile]{Exercise: vscode installation (Macos)}
+\begin{itemize}
+	\item Proof read brew --help
+	\item Run the following command to install vscode
+\end{itemize}
+
+	\begin{minted}{bash}
+brew install --cask visual-studio-code
+	\end{minted}
+
+\end{frame}
+
+\begin{frame}[fragile]{Exercise: vscode installation (Linux)}
+	\begin{enumerate}
+		\item Check \href{https://code.visualstudio.com/docs/setup/linux}{vscode official website} and download
+		\item For Ubuntu users, I don't recommend you to use snap
+	\end{enumerate}
 \end{frame}
