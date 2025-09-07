@@ -3,14 +3,13 @@
 \begin{frame}[fragile]{Introduction to package manager}
 	\begin{itemize}
 		\item A package manager or package management system (PMS) is a collection of software tools that automates the process of installing, upgrading, configuring, and removing computer programs for a computer in a consistent manner.
-		\item The core function of a package manager is to handle software dependencies and version conflicts to ensure that programs work correctly. It typically uses a local database to keep track of installed packages and their relationships. By working with software repositories or app stores, a package manager automates the entire software lifecycle, making it unnecessary to manually manage installations and updates.
 	\end{itemize}
 \end{frame}
 
 \begin{frame}[fragile]{Problem solved}
 	\begin{itemize}
-		\item \textbf{Dependency Hell}: This is a common problem where different software packages require different, and sometimes conflicting, versions of the same shared libraries. Package managers solve this by managing and allowing for the coexistence of multiple library versions.
-		\item \textbf{Manual Installation}: They eliminate the need for users to manually download, compile, and install software, which can be a complex and time-consuming process. This is particularly useful for large operating systems with hundreds or thousands of distinct packages.
+		\item \textbf{Dependency Hell}: Different software packages require different, and sometimes conflicting, versions of the same shared libraries. Package managers solve this by managing and allowing for the coexistence of multiple library versions.
+		\item \textbf{Manual Installation}: Package managers eliminate the need for users to manually download, compile, and install software, which can be a complex and time-consuming process.
 		\item \textbf{Synchronization Issues}: They ensure that the list of installed software is always consistent and up-to-date with a central database, preventing conflicts and missing prerequisites that could arise from manual interventions.
 	\end{itemize}
 \end{frame}
@@ -20,11 +19,10 @@
 	A package manager operates by interacting with three key components:
 
 	\begin{itemize}
-		\item \textbf{Packages}: These are the fundamental units of a package management system. A package is a file that contains the application, its necessary files, and metadata like the name, version, and dependencies.
-		\item \textbf{Repositories}: These are centralized locations or servers where packages are stored. A package manager downloads packages from these repositories, eliminating the need for users to search for and download software from various websites.
-		\item \textbf{Local Database}: The package manager maintains a local database on the user's system. This database keeps a record of all installed packages, their versions, and their dependencies, allowing the system to efficiently track and manage software and prevent conflicts.
+		\item \textbf{Packages}: Packages are the fundamental units of a PMS. A package is a file that contains the application, its necessary files, and metadata like the name, version, and dependencies.
+		\item \textbf{Repositories}: These are centralized locations or servers where packages are stored. A package manager downloads packages from these repositories.
+		\item \textbf{Local Database}: The package manager maintains a local database on the user's system. This database keeps a record of all installed packages, their versions, and their dependencies.
 	\end{itemize}
-
 \end{frame}
 
 
