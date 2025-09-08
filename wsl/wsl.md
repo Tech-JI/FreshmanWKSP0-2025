@@ -86,6 +86,18 @@ This might be an issue with your hardware. Please refer to section "How to Enabl
 
 I download latest ubuntu, debian and arch packages from ms official website, you can download **one of them**. If you use ubuntu and debian, just click the file and everything will be done automatically. If you use arch, you need to run `wsl --install --from-file <file-path>`. By arch wiki simply run ` wsl --install archlinux` is fine, but it is not tested by us.
 
+分享内容: archlinux.wsl 等3个
+
+链接: https://pan.sjtu.edu.cn/web/share/998f65b3a2da2ba1b0a3251c57e8b815, 提取码: 8kk6
+
+sample code
+
+```bash
+rename-item .\Downloads\archlinux.wsl archlinux.tar
+
+wsl --import Arch "$env:LOCALAPPDATA\wsl\Arch" ".\Downloads\archlinux.wsl" --version 2
+```
+
 The following tutorial is from old version, you can check them if you get stuck by previous methods.
 
 ### Ubuntu
