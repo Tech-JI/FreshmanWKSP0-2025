@@ -24,6 +24,7 @@
 		\item macOS has made zsh the default shell since Catalina (10.15)
 	\end{itemize}
 \end{frame}
+
 \begin{frame}[fragile]{WSL installation}
 	\begin{itemize}
 		\item For Macos and Linux users, you can take a rest
@@ -67,7 +68,7 @@
 		\item \textbf{cp}: Copy files or directories
 		\item \textbf{mv}: Move or rename files or directories
 		\item \textbf{rm}: Remove files or directories
-		\item \textbf{cat}: Display file contents
+		\item \textbf{cat}: Concatenate files
 		\item \textbf{echo}: Print text or variables to the terminal
 		\item \textbf{>}: Redirect stdout to overwrite file
 		\item \textbf{>>}: Redirect stdout to append file
@@ -117,51 +118,5 @@ cd ..
 
 # Dangerous!!! You'd better use project like trash-cli
 rm -rf my_project
-	\end{minted}
-\end{frame}
-
-\begin{frame}[fragile]{Environment Variable}
-	\begin{itemize}
-		\item We know that, ls is at /bin/ls, but we can directly use ls command.
-		\item This is the benefit of PATH environment variable.
-		\item The PATH define where OS finds the executable files.
-		\item You can use \textbf{echo \$PATH} to check your current PATH
-	\end{itemize}
-\end{frame}
-
-\begin{frame}[fragile]{Environment Variables}
-    \begin{itemize}
-        \item What are environment variables?
-        \item Environment variables, often called \textbf{ENVs}, are dynamic values that play a crucial role in controlling the behavior of programs and processes in Linux and other operating systems.
-    \end{itemize}
-\end{frame}
-
-\begin{frame}[fragile]{Environment Variables (Examples)}
-	\begin{minted}{bash}
-FOO="fooo"
-echo $FOO
-set # display all the ENVs(global as well as local)
-env # display all the global ENVs
-
-# local variable won't show, don't use " here
-bash -c 'echo $FOO'
-
-export FOO="fooo" # define a global variable
-
-# global variable will show
-bash -c 'echo $FOO'
-
-unset FOO
-	\end{minted}
-\end{frame}
-
-\begin{frame}[fragile]{Environment Variables (Examples)}
-	How to set up proxy in shell
-	\begin{minted}{bash}
-export http_proxy="(http)|(socks5)://127.0.0.1:<port>"
-export https_proxy="(http)|(socks5)://127.0.0.1:<port>"
-export all_proxy="(http)|(socks5)://127.0.0.1:<port>"
-
-curl -i www.google.com # test with google
 	\end{minted}
 \end{frame}
