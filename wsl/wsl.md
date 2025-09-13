@@ -93,8 +93,6 @@ I download latest ubuntu, debian and arch packages from ms official website, you
 sample code
 
 ```bash
-rename-item .\Downloads\archlinux.wsl archlinux.tar
-
 wsl --import Arch "$env:LOCALAPPDATA\wsl\Arch" ".\Downloads\archlinux.wsl" --version 2
 ```
 
