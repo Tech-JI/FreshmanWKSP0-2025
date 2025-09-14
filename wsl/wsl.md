@@ -6,30 +6,38 @@ _Modified by zzjc_
 
 ## Windows (using wsl)
 
+### What/why
+
 ### Requirements
 
 - Windows 10 1709 Fall Creators Update 64bit or later.
-- Windows Subsystem for Linux feature is enabled.
+- Windows Subsystem for Linux feature is enabled.  
+- For Mac and Linux users, you don't need to install wsl.  
 
+### Steps
 1. To enable Linux feature
 
 ![](./1.png)
 
 ![](./2.png)
 
-Then run on `Powershell` with administrator
+Then run `Powershell` with **administrator**  
+
+![](./powershell.jpg)
+
+Copy and paste the following command in Powershell and hit Enter:  
 
 ```bash
 dism.exe /online /enable-feature /featurename:Microsoft-Windows-Subsystem-Linux /all /norestart
 ```
+**Make sure you type exactly the same.**   
 
+If you see this, then you are good to go.  
 ![](./3.png)
 
 ### Reminder
-
-When you use WSL2, Hyper-V is enabled, which is **NOT** compatible with other vm platforms like VMWare and VirtualBox.
-
-Think twice before using it.
+1. VMware is not compatible with Hper-V in older versions. If you are already using VMare, check whether it meets the minimum requirements: Windows 10 20H1 build 19041.264 or later; VMware Workstation/Player 15.5.5 or later.  
+If not, please update/uninstall VMware/don't use wsl.  
 
 2. Check whether your PC support WSL2:
 
@@ -48,13 +56,19 @@ wsl --set-default-version 2
 
 #### Case 1: No error
 
-- Just enjoy your WSL2
+- Go on and install linux distro in your wsl2.  
 
 #### Case 2: Error with link https://aka.ms/wsl2kernel attatched
 
 - Go to https://aka.ms/wsl2kernel and download a patch
 - start wsl2 again
 - If network is slow, consider use winget to install wsl and turn on your proxy
+
+##### Case 2.1 Case 5: Error: 0x800701bc
+Go to following link for tutorial:  
+https://learn.microsoft.com/zh-cn/windows/wsl/install-manual#step-4---download-the-linux-kernel-update-package  
+The installaztion link:  
+https://wslstorestorage.blob.core.windows.net/wslblob/wsl_update_x64.msi
 
 #### Case 3: Error telling you Hyper-V is not enabled
 
@@ -75,52 +89,103 @@ wsl --set-default-version 2
 
 This might be an issue with your hardware. Please refer to section "How to Enable Hardware Virtualization in BIOS" in https://www.makeuseof.com/windows-11-enable-hyper-v/ and try to enable hardware virtualization. (My laptop thinkpad has this issue)
 
-##### Case 3.4 Otherwise
+#### Case 4: Catastrophic failure(灾难性故障)
+This error may due to corruptions during wsl installation. A reinstall may work.  
+You can try the following commands:  
+1. Go to `Open or close Windows features`(启用或关闭Windows功能) and cancel the above two features, reboot, tick the above two features and reboot
+
+2. 
+```bash
+$ wsl --shutdown
+$ wsl --update
+$ wsl --install
+```
+3. go to https://github.com/microsoft/WSL/releases and download wsl.2.6.1.0.x64.msi if your computer is x64, or wsl.2.6.1.0.arm64.msi if it's ARM.  
+
+4. 
+```bash
+$ Get-AppxPackage MicrosoftCorporationII.WindowsSubsystemforLinux -AllUsers | Remove-AppxPackage
+$ wsl --update --web-download
+```
+
+#### Case 5: 0x80370114Error
+
+Go to `Open or close Windows features`(启用或关闭Windows功能) and cancel Windows Hypervisor Platform(windows虚拟机监控程序平台).
+
+
+#### Case 6: 0x8007019eError
+You could try the following command:  
+1. 
+```
+wsl --set-default-version 2
+```
+2. 
+```
+wsl --update
+```
+
+3. try the solution of Case 2.1.  
+#### Case 7: ubuntu files not found
+![](./ubuntu_notfound.png)
+This may due to changes of the path of ubuntu files. Try:  
+```
+wsl --unregister Ubuntu
+```
+And reinstall ubuntu.  
+
+#### Case 8: wsl command not found
+Install wsl with winget:
+```
+winget install Microsoft.WSL
+```
+
+#### Otherwise
 
 - Search online with error message on your screen (better go to stackoverflow/microsoft doc/github issues)
 - Just use WSL1. It has no big issue.
 
-4. Install Linux (Ubuntu/arch, you only need choose **one**)
+4. Install Linux (Ubuntu/Debian/arch, you only need choose **one**)
 
-### Jbox
-
-I download latest ubuntu, debian and arch packages from ms official website, you can download **one of them**. If you use ubuntu and debian, just click the file and everything will be done automatically. If you use arch, you need to run `wsl --install --from-file <file-path>`. By arch wiki simply run ` wsl --install archlinux` is fine, but it is not tested by us.
-
-分享内容: archlinux.wsl 等3个
-
-链接: https://pan.sjtu.edu.cn/web/share/998f65b3a2da2ba1b0a3251c57e8b815, 提取码: 8kk6
-
-sample code
-
-```bash
-wsl --import Arch "$env:LOCALAPPDATA\wsl\Arch" ".\Downloads\archlinux.wsl" --version 2
-```
-
-The following tutorial is from old version, you can check them if you get stuck by previous methods.
 
 ### Ubuntu
+Ubuntu is a linux distro which is widely used and simple for beginners.  
 
 Go to Microsoft Store and search "Ubuntu"
 
-![](./5.png)
+![](./ubuntu_ms.png)
 
-Download one of them.
+Download one of them. Recommend:24.04.    
+*Hint: if it's slow, please scroll down to "JBox" section and download ubuntu there.*
 
 Open your terminal and choose `ubuntu`.
 
-Setup your user name and password.
-
+Setup your user name and password. **The password will not be shown in the terminal when you type in.**
 ![](./7.png)
 
-run
-
+run the following commands to install essen tial packages. 
 ```bash
 $ sudo apt update
 $ sudo apt install build-essential
 $ gcc --version
 ```
-
 ![](./8.png)
+
+
+### Debian
+the steps are exactly the same as ubuntu.
+
+### Reminder  
+
+#### Case 1: No username and password required
+
+In this case, you may see something like `root@xxx` in the terminal, which means you are logging in as a root user(superuser). You need to set up a normal user with following commands:  
+```bash
+$ adduser <username>
+$ su - <username>
+```
+seeing `<username>@xxx:~$` means it's successful.  
+
+#### Case 2:
 
 ### Arch
 
@@ -131,6 +196,7 @@ Here, we demonstrate the first method.
 1. [Download](https://github.com/yuk7/ArchWSL/releases/latest) the installer zip.
 
 ![](./9.png)
+*Hint: if it's slow, please scroll down to "JBox" section and download Arch there.*
 
 2. Extract all files in zip file to the same directory. Please extract to a folder that you have write permission. For example, `C:\Program Files` cannot be used since the rootfs cannot be modified there.
 
@@ -199,3 +265,31 @@ $ gcc --version
 ```
 
 ![](./18.png)
+
+
+### Reminder:
+If you face issues when installing arch, please search online or just switch to ubuntu/debian.  
+
+
+### Jbox
+
+I download latest ubuntu, debian and arch packages from ms official website, you can download **one of them**. If you use ubuntu and debian, just click the file and everything will be done automatically. If you use arch, you need to run `wsl --install --from-file <file-path>`. By arch wiki simply run ` wsl --install archlinux` is fine, but it is not tested by us.
+
+分享内容: archlinux.wsl 等3个
+
+链接: https://pan.sjtu.edu.cn/web/share/998f65b3a2da2ba1b0a3251c57e8b815, 提取码: 8kk6
+
+sample code(**Arch**)
+
+```bash
+wsl --import Arch "$env:LOCALAPPDATA\wsl\Arch" ".\Downloads\archlinux.wsl" --version 2
+```
+
+
+### Usage
+
+Open `Powershell` or `cmd`, type:  
+```
+wsl
+```
+Then you will enter the linux environment in the terminal(wsl will choose the default linux distro). Now go on and code!  
