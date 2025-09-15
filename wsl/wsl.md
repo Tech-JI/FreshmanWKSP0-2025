@@ -350,12 +350,19 @@ If you face issues when installing arch, please search online or just switch to 
 
 #### Case 1: No username and password required
 
-In this case, you may see something like `root@xxx` in the terminal, which means you are logging in as a root user(superuser). You need to set up a normal user with following commands:  
+In this case, you may see something like `root@xxx` in the terminal, which means you are logging in as a root user(superuser). You need to set up a normal user with sudo right with following commands:  
 ```bash
 $ adduser <username>
-$ su - <username>
+$ usermod -aG sudo <username>
+$ exit
 ```
-seeing `<username>@xxx:~$` means it's successful.  
+After exiting wsl, run
+```powershell
+wsl --manage <distro> --set-default-user <username>
+```
+change \<distro> to ubuntu-24.04 if you installed ubuntu. or type `wsl --list` to see the distro name you installed and replace it.  
+seeing `<username>@xxx:~$` everytime you enter wsl means it's successful.  
+
 
 ### Usage
 
