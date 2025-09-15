@@ -7,11 +7,11 @@ _Modified by zzjc, lsr_
 ## Windows (using wsl)
 
 ### What/why
-In simple terms: WSL is a feature in Windows that lets you run a genuine Linux environment directly on your Windows machine, as if you were on an Ubuntu, Debian, or other Linux computer. It's **fast** to switch between linux and windows enviroments.  
+In simple terms: WSL is a feature in Windows that lets you run a virtual machine for Linux directly on your Windows, as if you were on an Ubuntu, Debian, or other Linux computer. The greatest advantage is that it allows to run Linux and Windows **simultaneously**.
 
-**Why linux a better OS for development:** For developers, its powerful commandline interface, package managers (like apt), customizable environment are primary draws. It streamlines software installation, scripting, and automation.
+**Why linux a better OS for development:** For developers, its powerful commandline interface, package managers (like apt), customizable environment are primary draws. It streamlines software installation, scripting, and automation. What's more, **JOJ** used in ENGR1010J/1510J is run within linux environment. So if you use Windows, you may encounter *"It works on my computer! Why can't it work in JOJ?"*
 
-**Notice:** wsl is only an environment, you have to install linux distro(like ubuntu/debian/arch) along the way.
+**Notice:** wsl is only an environment, you have to install **one linux distro** (like ubuntu/debian/arch) along the way.
 
 ### Requirements(wsl2)
 
@@ -108,6 +108,8 @@ dism.exe /online /enable-feature /featurename:Microsoft-Windows-Subsystem-Linux 
 
 Now you can move on to install a linux distro: ubuntu **or** debian **or** arch.  
 
+### Debug
+
 #### Case 1: No error
 
 - Go on and install linux distro in your wsl2.  
@@ -167,7 +169,7 @@ dism.exe /online /enable-feature /featurename:Microsoft-Windows-Subsystem-Linux 
 ```powershell
 dism.exe /online /enable-feature /featurename:VirtualMachinePlatform /all /norestart
 ```
-3. go to https://github.com/microsoft/WSL/releases and download wsl.2.6.1.0.x64.msi if your computer is x64, or wsl.2.6.1.0.arm64.msi if it's ARM.  
+3. go to https://pan.sjtu.edu.cn/web/share/bc19722cabba0d5bf35826eb9e1e1b8a and download wsl.2.6.1.0.x64.msi if your computer is x64, or wsl.2.6.1.0.arm64.msi if it's ARM.  
 
 4. 
 ```powershell
@@ -217,18 +219,32 @@ winget install Microsoft.WSL
 - Search online with error message on your screen (better go to stackoverflow/microsoft doc/github issues)
 - Just use WSL1. It has no big issue.
 
-4. Install Linux (Ubuntu/Debian/arch, you only need choose **one**)
+### Download Linux Distro
+
+Install Linux (Ubuntu/Debian/arch, you **only** need choose **one**)
 
 
-### Ubuntu
-Ubuntu is a linux distro which is widely used and simple for beginners.  
+#### Jbox
 
+I download latest ubuntu, debian and arch packages from ms official website, you can download **one of them**. If you use ubuntu and debian, just click the file and everything will be done automatically. If you use arch, you need to run `wsl --install --from-file <file-path>`. By arch wiki simply run ` wsl --install archlinux` is fine, but it is not tested by us.  
+链接: https://pan.sjtu.edu.cn/web/share/998f65b3a2da2ba1b0a3251c57e8b815, 提取码: 8kk6  
+sample code(**Arch**)
+```powershell
+wsl --import Arch "$env:LOCALAPPDATA\wsl\Arch" ".\Downloads\archlinux.wsl" --version 2
+```
+#### Microsoft Store(slow and instable)
+You could also download them in Microsoft Store(**no need if you successfully install them from Jbox**) but it is not recommended as it may be slow.  
+Take installing Ubuntu as an example:  
 Go to Microsoft Store and search "Ubuntu"
 
 ![](./ubuntu_ms.png)
 
 Download one of them. Recommend:24.04.    
-*Hint: if it's slow, please scroll down to "JBox" section and download ubuntu there.*
+*Hint: if it's slow, please download it from Jbox.*
+
+
+#### Ubuntu
+Ubuntu is a linux distro which is widely used and simple for beginners.  
 
 Then click on `open` in microsoft store or double click the file downloaded from jbox.  
 
@@ -244,10 +260,10 @@ $ gcc --version
 ![](./8.png)
 
 
-### Debian
+#### Debian
 the steps are exactly the same as ubuntu.
 
-### Arch
+#### Arch
 
 You may refer to the official website.
 
@@ -256,7 +272,7 @@ Here, we demonstrate the first method.
 1. [Download](https://github.com/yuk7/ArchWSL/releases/latest) the installer zip.
 
 ![](./9.png)
-*Hint: if it's slow, please scroll down to "JBox" section and download Arch there.*
+*Hint: if it's slow, please go to`JBox` section and download Arch there.*
 
 2. Extract all files in zip file to the same directory. Please extract to a folder that you have write permission. For example, `C:\Program Files` cannot be used since the rootfs cannot be modified there.
 
@@ -330,20 +346,6 @@ $ gcc --version
 ### Reminder:
 If you face issues when installing arch, please search online or just switch to ubuntu/debian.  
 
-
-### Jbox
-
-I download latest ubuntu, debian and arch packages from ms official website, you can download **one of them**. If you use ubuntu and debian, just click the file and everything will be done automatically. If you use arch, you need to run `wsl --install --from-file <file-path>`. By arch wiki simply run ` wsl --install archlinux` is fine, but it is not tested by us.
-
-分享内容: archlinux.wsl 等3个
-
-链接: https://pan.sjtu.edu.cn/web/share/998f65b3a2da2ba1b0a3251c57e8b815, 提取码: 8kk6
-
-sample code(**Arch**)
-
-```powershell
-wsl --import Arch "$env:LOCALAPPDATA\wsl\Arch" ".\Downloads\archlinux.wsl" --version 2
-```
 ### Reminder  
 
 #### Case 1: No username and password required
